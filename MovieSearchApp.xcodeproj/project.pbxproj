@@ -15,6 +15,7 @@
 		374E52A21E65EBB30083FE3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 374E52A01E65EBB30083FE3F /* LaunchScreen.storyboard */; };
 		374E52AD1E65EBB30083FE3F /* MovieSearchAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374E52AC1E65EBB30083FE3F /* MovieSearchAppTests.swift */; };
 		374E52B81E65EBB30083FE3F /* MovieSearchAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374E52B71E65EBB30083FE3F /* MovieSearchAppUITests.swift */; };
+		374E52C61E6602CE0083FE3F /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374E52C51E6602CE0083FE3F /* MovieDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		374E52B31E65EBB30083FE3F /* MovieSearchAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieSearchAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		374E52B71E65EBB30083FE3F /* MovieSearchAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchAppUITests.swift; sourceTree = "<group>"; };
 		374E52B91E65EBB30083FE3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		374E52C51E6602CE0083FE3F /* MovieDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				374E52971E65EBB30083FE3F /* FirstViewController.swift */,
 				374E52991E65EBB30083FE3F /* SecondViewController.swift */,
 				374E529B1E65EBB30083FE3F /* Main.storyboard */,
+				374E52C51E6602CE0083FE3F /* MovieDetailViewController.swift */,
 				374E529E1E65EBB30083FE3F /* Assets.xcassets */,
 				374E52A01E65EBB30083FE3F /* LaunchScreen.storyboard */,
 				374E52A31E65EBB30083FE3F /* Info.plist */,
@@ -196,6 +199,7 @@
 				TargetAttributes = {
 					374E52911E65EBB30083FE3F = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 56QN9BM5HK;
 						ProvisioningStyle = Automatic;
 					};
 					374E52A71E65EBB30083FE3F = {
@@ -262,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				374E52C61E6602CE0083FE3F /* MovieDetailViewController.swift in Sources */,
 				374E529A1E65EBB30083FE3F /* SecondViewController.swift in Sources */,
 				374E52961E65EBB30083FE3F /* AppDelegate.swift in Sources */,
 				374E52981E65EBB30083FE3F /* FirstViewController.swift in Sources */,
@@ -414,7 +419,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 56QN9BM5HK;
 				INFOPLIST_FILE = MovieSearchApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = taino.MovieSearchApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -426,7 +433,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 56QN9BM5HK;
 				INFOPLIST_FILE = MovieSearchApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = taino.MovieSearchApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
