@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		370F17B11E67E1F90040772E /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F17B01E67E1F90040772E /* MovieCollectionViewCell.swift */; };
-		370F17B31E68B5AF0040772E /* JsonHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F17B21E68B5AF0040772E /* JsonHandler.swift */; };
+		370F17B51E68BC230040772E /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F17B41E68BC230040772E /* DataHandler.swift */; };
 		374E52961E65EBB30083FE3F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374E52951E65EBB30083FE3F /* AppDelegate.swift */; };
 		374E52981E65EBB30083FE3F /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374E52971E65EBB30083FE3F /* FirstViewController.swift */; };
 		374E529A1E65EBB30083FE3F /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374E52991E65EBB30083FE3F /* SecondViewController.swift */; };
@@ -41,7 +41,7 @@
 
 /* Begin PBXFileReference section */
 		370F17B01E67E1F90040772E /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovieCollectionViewCell.swift; path = ../MovieCollectionViewCell.swift; sourceTree = "<group>"; };
-		370F17B21E68B5AF0040772E /* JsonHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonHandler.swift; sourceTree = "<group>"; };
+		370F17B41E68BC230040772E /* DataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataHandler.swift; path = ../DataHandler.swift; sourceTree = "<group>"; };
 		374E52921E65EBB30083FE3F /* MovieSearchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieSearchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		374E52951E65EBB30083FE3F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		374E52971E65EBB30083FE3F /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -109,11 +109,11 @@
 		374E52941E65EBB30083FE3F /* MovieSearchApp */ = {
 			isa = PBXGroup;
 			children = (
+				370F17B41E68BC230040772E /* DataHandler.swift */,
 				370F17B01E67E1F90040772E /* MovieCollectionViewCell.swift */,
 				374E52951E65EBB30083FE3F /* AppDelegate.swift */,
 				374E52971E65EBB30083FE3F /* FirstViewController.swift */,
 				37F306E51E67AB11005C5005 /* Movie.swift */,
-				370F17B21E68B5AF0040772E /* JsonHandler.swift */,
 				374E52991E65EBB30083FE3F /* SecondViewController.swift */,
 				374E529B1E65EBB30083FE3F /* Main.storyboard */,
 				374E52C51E6602CE0083FE3F /* MovieDetailViewController.swift */,
@@ -282,7 +282,7 @@
 				374E52C61E6602CE0083FE3F /* MovieDetailViewController.swift in Sources */,
 				374E529A1E65EBB30083FE3F /* SecondViewController.swift in Sources */,
 				374E52961E65EBB30083FE3F /* AppDelegate.swift in Sources */,
-				370F17B31E68B5AF0040772E /* JsonHandler.swift in Sources */,
+				370F17B51E68BC230040772E /* DataHandler.swift in Sources */,
 				370F17B11E67E1F90040772E /* MovieCollectionViewCell.swift in Sources */,
 				37F306E21E6796D3005C5005 /* SwiftyJSON.swift in Sources */,
 				374E52981E65EBB30083FE3F /* FirstViewController.swift in Sources */,

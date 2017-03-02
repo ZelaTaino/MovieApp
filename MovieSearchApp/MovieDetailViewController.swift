@@ -10,15 +10,16 @@ import UIKit
 
 class MovieDetailViewController: UIViewController, UIScrollViewDelegate{
 
+    
+    @IBOutlet weak var poster: UIImageView!
+    @IBOutlet weak var movieTitle: UILabel!
+    @IBOutlet weak var score: UILabel!
+    @IBOutlet weak var year: UILabel!
+    var aMovie: Movie!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //create frame
-        //create scroll view with frame
-        //atributes of scroll view
-        //add scroll view to frame
-        //
-        
+        movieTitle.text = aMovie.getTitle()
     }
 
     override func didReceiveMemoryWarning() {

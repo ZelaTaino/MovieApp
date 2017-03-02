@@ -8,15 +8,17 @@
 
 import UIKit
 
-class FirstViewController: UIViewController, UICollectionViewDataSource {
+class FirstViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var collectionView: UICollectionView!
     var movieArray = [Movie]()
+    var cellSelected = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
-        let json = JsonHandler.getJSON(path: "http://www.omdbapi.com/?s=treasure&y=&plot=full")
+        collectionView.delegate = self
+        let json = DataHandler.getJSON(path: "http://www.omdbapi.com/?s=salt&y=&plot=full")
         createMovies(json: json)
     }
     
@@ -30,8 +32,6 @@ class FirstViewController: UIViewController, UICollectionViewDataSource {
         let aMovie = movieArray[indexPath.row]
         cell.setTitle(title: aMovie.getTitle())
         cell.setPosterImage(image: aMovie.getPoster())
-//        print("\(aMovie.getTitle())")
-//        print("\(aMovie.getPoster()) \n")
         return cell
     }
     
@@ -45,11 +45,24 @@ class FirstViewController: UIViewController, UICollectionViewDataSource {
             let movieTitle = aJson["Title"].stringValue
             let moviePoster = aJson["Poster"].stringValue
             let movieYear = aJson["Year"].stringValue
-            print("title: \(movieTitle) \t poster: \(moviePoster) \t year: \(movieYear)")
             let aMovie = Movie(movieTitle: movieTitle, moviePoster: moviePoster, movieYear: movieYear)
             movieArray.append(aMovie)
         }
         
+    }
+    
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        cellSelected = indexPath.row
+////        self.performSegue(withIdentifier: "segueMovieDetails", sender: nil)
+//    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueMovieDetails"{
+            let nextVC = segue.destination as! MovieDetailViewController
+            let indexPath = collectionView.indexPathsForSelectedItems
+            let index = indexPath?[0]
+            nextVC.aMovie = movieArray[(index?.row)!]
+        }
     }
 
     override func didReceiveMemoryWarning() {

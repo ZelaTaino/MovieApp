@@ -54,16 +54,15 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PcN-MB-PGR">
                                                     <rect key="frame" x="0.0" y="0.0" width="112" height="170"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="0.078431372550000003" green="0.62745098040000002" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
                                                 <view alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2OC-Pv-hVs">
                                                     <rect key="frame" x="0.0" y="119" width="112" height="51"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="95I-dU-Rer">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="95I-dU-Rer">
                                                             <rect key="frame" x="8" y="8" width="96" height="35"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         </label>
@@ -75,7 +74,7 @@
                                         <connections>
                                             <outlet property="movieTitle" destination="95I-dU-Rer" id="JHB-bi-XW6"/>
                                             <outlet property="posterImg" destination="PcN-MB-PGR" id="fVg-nW-zNn"/>
-                                            <segue destination="DvM-Yu-cJj" kind="show" id="H7v-Ot-OfE"/>
+                                            <segue destination="DvM-Yu-cJj" kind="show" identifier="segueMovieDetails" id="H7v-Ot-OfE"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -125,12 +124,12 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GFg-6D-hsT">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9bO-RL-0Or">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9bO-RL-0Or" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FG4-5b-1AN">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="393"/>
-                                                <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OEm-a6-feN">
                                                 <rect key="frame" x="167" y="401" width="42" height="21"/>
@@ -190,10 +189,16 @@
                             <constraint firstItem="GFg-6D-hsT" firstAttribute="leading" secondItem="SGP-L1-Pif" secondAttribute="leading" id="qYA-H9-lue"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="movieTitle" destination="OEm-a6-feN" id="ZtM-nP-o9h"/>
+                        <outlet property="poster" destination="FG4-5b-1AN" id="7w8-Fq-wkk"/>
+                        <outlet property="score" destination="4So-tY-x5Y" id="hlS-mX-Rjy"/>
+                        <outlet property="year" destination="SH8-xC-jLB" id="lv7-dY-Rxe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FoM-QK-ufb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2054" y="-321"/>
+            <point key="canvasLocation" x="2053.5999999999999" y="-321.58920539730138"/>
         </scene>
         <!--Second-->
         <scene sceneID="wg7-f3-ORb">

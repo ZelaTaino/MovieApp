@@ -32,19 +32,6 @@ class Movie {
     }
     
     func getPoster() -> UIImage {
-//        let json = JsonHandler.getJSON(path: poster)
-        guard let url = URL(string: poster)else { return UIImage(named: "noPhoto.png")! }
-        do {
-            let data = try Data(contentsOf: url)
-            return UIImage(data: data)!
-        } catch {
-            return UIImage(named: "noPhoto.png")!
-        }
-
-        
-//        guard let image = UIImage(named: poster) else{
-//            return UIImage(named: "noPhoto.png")!
-//        }
-//        return image
+        return DataHandler.getImage(path: poster)
     }
 }
