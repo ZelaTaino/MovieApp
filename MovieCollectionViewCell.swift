@@ -17,7 +17,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
     }
     
     func setTitle(title: String) {
-            movieTitle.text = title
+        movieTitle.text = title
     }
     
 }
