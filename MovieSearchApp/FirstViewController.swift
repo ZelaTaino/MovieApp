@@ -51,11 +51,6 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        cellSelected = indexPath.row
-////        self.performSegue(withIdentifier: "segueMovieDetails", sender: nil)
-//    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueMovieDetails"{
             let nextVC = segue.destination as! MovieDetailViewController

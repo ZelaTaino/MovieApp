@@ -15,6 +15,9 @@ class Movie {
     private var year: String
     private var score: String?
     private var rating: String?
+    private var actors: String?
+    private var description: String?
+    private var duration: String?
     
     init(movieTitle: String, moviePoster: String, movieYear: String){
         title = movieTitle
@@ -22,9 +25,12 @@ class Movie {
         year = movieYear
     }
     
-    func setDetails(movieScore: String, movieRating: String) {
+    func setDetails(movieScore: String, movieRating: String, movieActors: String, movieDescription: String, movieDuration: String) {
         score = movieScore
         rating = movieRating
+        actors = movieActors
+        description = movieDescription
+        duration = movieDuration
     }
     
     func getTitle() -> String {
@@ -33,5 +39,9 @@ class Movie {
     
     func getPoster() -> UIImage {
         return DataHandler.getImage(path: poster)
+    }
+    
+    func getYear() -> String {
+        return year
     }
 }
