@@ -16,6 +16,8 @@
 		374E52AD1E65EBB30083FE3F /* MovieSearchAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374E52AC1E65EBB30083FE3F /* MovieSearchAppTests.swift */; };
 		374E52B81E65EBB30083FE3F /* MovieSearchAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374E52B71E65EBB30083FE3F /* MovieSearchAppUITests.swift */; };
 		374E52C61E6602CE0083FE3F /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374E52C51E6602CE0083FE3F /* MovieDetailViewController.swift */; };
+		37F306E21E6796D3005C5005 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F306E11E6796D3005C5005 /* SwiftyJSON.swift */; };
+		37F306E41E67A7F0005C5005 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F306E31E67A7F0005C5005 /* MovieCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		374E52B71E65EBB30083FE3F /* MovieSearchAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchAppUITests.swift; sourceTree = "<group>"; };
 		374E52B91E65EBB30083FE3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		374E52C51E6602CE0083FE3F /* MovieDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		37F306E11E6796D3005C5005 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		37F306E31E67A7F0005C5005 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,9 +107,11 @@
 			children = (
 				374E52951E65EBB30083FE3F /* AppDelegate.swift */,
 				374E52971E65EBB30083FE3F /* FirstViewController.swift */,
+				37F306E31E67A7F0005C5005 /* MovieCollectionViewCell.swift */,
 				374E52991E65EBB30083FE3F /* SecondViewController.swift */,
 				374E529B1E65EBB30083FE3F /* Main.storyboard */,
 				374E52C51E6602CE0083FE3F /* MovieDetailViewController.swift */,
+				37F306E11E6796D3005C5005 /* SwiftyJSON.swift */,
 				374E529E1E65EBB30083FE3F /* Assets.xcassets */,
 				374E52A01E65EBB30083FE3F /* LaunchScreen.storyboard */,
 				374E52A31E65EBB30083FE3F /* Info.plist */,
@@ -269,6 +275,8 @@
 				374E52C61E6602CE0083FE3F /* MovieDetailViewController.swift in Sources */,
 				374E529A1E65EBB30083FE3F /* SecondViewController.swift in Sources */,
 				374E52961E65EBB30083FE3F /* AppDelegate.swift in Sources */,
+				37F306E41E67A7F0005C5005 /* MovieCollectionViewCell.swift in Sources */,
+				37F306E21E6796D3005C5005 /* SwiftyJSON.swift in Sources */,
 				374E52981E65EBB30083FE3F /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -516,6 +524,7 @@
 				374E52BE1E65EBB30083FE3F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		374E52BF1E65EBB30083FE3F /* Build configuration list for PBXNativeTarget "MovieSearchAppTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +533,7 @@
 				374E52C11E65EBB30083FE3F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		374E52C21E65EBB30083FE3F /* Build configuration list for PBXNativeTarget "MovieSearchAppUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +542,7 @@
 				374E52C41E65EBB30083FE3F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
