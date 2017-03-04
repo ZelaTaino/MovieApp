@@ -8,8 +8,9 @@
 
 import UIKit
 
-class FirstViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class FirstViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate {
     
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
     var movieArray = [Movie]()
     var cellSelected = 0
@@ -18,8 +19,19 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         super.viewDidLoad()
         collectionView.dataSource = self
         collectionView.delegate = self
-        let json = DataHandler.getJSON(path: "http://www.omdbapi.com/?s=salt&y=&plot=full")
-        createMovies(json: json)
+        searchBar.delegate = self
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        movieArray.removeAll()
+        let newSearchText = searchText.replacingOccurrences(of: " ", with: "+")
+        DispatchQueue.global().async {
+            let json = DataHandler.getJSON(path: "http://www.omdbapi.com/?s=\(newSearchText)")
+            DispatchQueue.main.async {
+                self.createMovies(json: json)
+                self.collectionView.reloadData()
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -40,7 +52,6 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     private func createMovies(json: JSON) {
-        
         for aJson in json["Search"].arrayValue{
             let movieTitle = aJson["Title"].stringValue
             let moviePoster = aJson["Poster"].stringValue
@@ -48,7 +59,6 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
             let aMovie = Movie(movieTitle: movieTitle, moviePoster: moviePoster, movieYear: movieYear)
             movieArray.append(aMovie)
         }
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

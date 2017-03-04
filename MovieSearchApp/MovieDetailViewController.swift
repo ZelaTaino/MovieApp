@@ -10,40 +10,37 @@ import UIKit
 
 class MovieDetailViewController: UIViewController, UIScrollViewDelegate{
 
-    
+    @IBOutlet weak var rated: UILabel!
     @IBOutlet weak var poster: UIImageView!
-    @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var score: UILabel!
     @IBOutlet weak var year: UILabel!
-    @IBOutlet weak var duration: UILabel!
-    @IBOutlet weak var actors: UILabel!
-    @IBOutlet weak var rating: UILabel!
-    @IBOutlet weak var movieDescription: UILabel!
+//    @IBOutlet weak var duration: UILabel!
+//    @IBOutlet weak var actors: UILabel!
+//    @IBOutlet weak var rating: UILabel!
+//    @IBOutlet weak var movieDescription: UILabel!
     
     var aMovie: Movie!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        movieTitle.text = aMovie.getTitle()
+        self.title = aMovie.getTitle()
         poster.image = aMovie.getPoster()
-        year.text = aMovie.getYear()
+        year.text = "Released: \(aMovie.getYear())"
         
-        let json = DataHandler.getJSON(path: "http://www.omdbapi.com/?t=salt&plot=full")
-        //addToMovie(json: json)
+        let searchTitle = aMovie.getTitle().replacingOccurrences(of: " ", with: "+")
+        let json = DataHandler.getJSON(path: "http://www.omdbapi.com/?t=\(searchTitle)&plot=full")
+        print("\(json)")
+        addToMovie(json: json)
     }
     
     func addToMovie(json: JSON) {
-        for aJson in json.arrayValue {
-            score.text = aJson["imdbRating"].stringValue
-            rating.text = aJson["Rated"].stringValue
-            actors.text = aJson["Actors"].stringValue
-            movieDescription.text = aJson["Plot"].stringValue
-            duration.text = aJson["Runtime"].stringValue
-        }
+        score.text = "Score: \(json["imdbRating"].stringValue)/10"
+        rated.text = "Rated: \(json["Rated"].stringValue)"
+//            rating.text = aJson["Rated"].stringValue
+//            actors.text = aJson["Actors"].stringValue
+//            movieDescription.text = aJson["Plot"].stringValue
+//            duration.text = aJson["Runtime"].stringValue
     }
-    
-    //pull movies full info and add to object
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
