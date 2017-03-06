@@ -132,10 +132,6 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="393"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZTI-Fo-A3a">
-                                                <rect key="frame" x="165" y="524" width="46" height="30"/>
-                                                <state key="normal" title="Button"/>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rated" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Y7-F7-Ivm">
                                                 <rect key="frame" x="165" y="485" width="45" height="21"/>
                                                 <constraints>
@@ -163,21 +159,31 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mtc-vh-scJ">
+                                                <rect key="frame" x="132" y="514" width="112" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="0oI-nR-Xaj"/>
+                                                </constraints>
+                                                <state key="normal" title="Add to Favorites"/>
+                                                <connections>
+                                                    <action selector="addToFavoritesPressed:" destination="DvM-Yu-cJj" eventType="touchUpInside" id="Icq-jE-UjC"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="Mtc-vh-scJ" firstAttribute="centerX" secondItem="9bO-RL-0Or" secondAttribute="centerX" id="4rw-Be-vns"/>
                                             <constraint firstItem="SBR-Yw-cam" firstAttribute="top" secondItem="FG4-5b-1AN" secondAttribute="bottom" constant="25" id="83v-k7-0Ir"/>
                                             <constraint firstItem="FG4-5b-1AN" firstAttribute="top" secondItem="9bO-RL-0Or" secondAttribute="top" id="8Qc-Dx-czq"/>
+                                            <constraint firstItem="Mtc-vh-scJ" firstAttribute="top" secondItem="9Y7-F7-Ivm" secondAttribute="bottom" constant="8" id="AZb-o6-S7y"/>
                                             <constraint firstItem="SBR-Yw-cam" firstAttribute="centerX" secondItem="9bO-RL-0Or" secondAttribute="centerX" id="Lxw-Gg-HK0"/>
-                                            <constraint firstItem="ZTI-Fo-A3a" firstAttribute="centerX" secondItem="9bO-RL-0Or" secondAttribute="centerX" id="QGS-hp-ISW"/>
+                                            <constraint firstAttribute="bottom" secondItem="Mtc-vh-scJ" secondAttribute="bottom" constant="123" id="NmU-X4-v2i"/>
                                             <constraint firstItem="9Y7-F7-Ivm" firstAttribute="centerX" secondItem="9bO-RL-0Or" secondAttribute="centerX" id="RPU-aI-xlN"/>
-                                            <constraint firstItem="ZTI-Fo-A3a" firstAttribute="top" secondItem="9Y7-F7-Ivm" secondAttribute="bottom" constant="18" id="YWj-Oh-TGF"/>
                                             <constraint firstItem="FG4-5b-1AN" firstAttribute="leading" secondItem="9bO-RL-0Or" secondAttribute="leading" id="gBd-8K-Q8S"/>
                                             <constraint firstItem="de2-kn-XrE" firstAttribute="top" secondItem="SBR-Yw-cam" secondAttribute="bottom" constant="17" id="j2X-1J-WL2"/>
                                             <constraint firstItem="de2-kn-XrE" firstAttribute="centerX" secondItem="9bO-RL-0Or" secondAttribute="centerX" id="mdB-zT-sdr"/>
                                             <constraint firstItem="9Y7-F7-Ivm" firstAttribute="top" secondItem="de2-kn-XrE" secondAttribute="bottom" constant="8" id="oLm-dX-RXh"/>
                                             <constraint firstAttribute="trailing" secondItem="FG4-5b-1AN" secondAttribute="trailing" id="rmT-wt-rnY"/>
-                                            <constraint firstAttribute="bottom" secondItem="ZTI-Fo-A3a" secondAttribute="bottom" constant="113" id="z6j-Wc-MRo"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -272,6 +278,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="SAVED" image="heartIcon" id="cPa-gy-q4n"/>
+                    <connections>
+                        <outlet property="tableView" destination="4iC-r5-rwc" id="e4J-M0-CcM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>

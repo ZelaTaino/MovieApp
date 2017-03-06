@@ -20,9 +20,14 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate{
 //    @IBOutlet weak var movieDescription: UILabel!
     
     var aMovie: Movie!
+    var favoritesArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let defaults = UserDefaults.standard
+        favoritesArray = defaults.object(forKey: "favorites") as! [String]
+        
         self.title = aMovie.getTitle()
         poster.image = aMovie.getPoster()
         year.text = "Released: \(aMovie.getYear())"
@@ -42,6 +47,14 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate{
 //            duration.text = aJson["Runtime"].stringValue
     }
 
+    @IBAction func addToFavoritesPressed(_ sender: UIButton) {
+        favoritesArray.append(aMovie.getTitle())
+        print("selected")
+        
+        let defaults = UserDefaults.standard
+        defaults.set(favoritesArray, forKey: "favorites")
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
