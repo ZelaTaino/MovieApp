@@ -29,6 +29,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         spinner.hidesWhenStopped = true
         spinner.activityIndicatorViewStyle = .gray
         collectionView.addSubview(spinner)
+        
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -39,8 +40,8 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         searchBar.setShowsCancelButton(false, animated: true)
     }
     
-    func searchBarCancelButtonClicked(_ aSearchBar: UISearchBar) {
-        aSearchBar.text = ""
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
         searchBar.endEditing(true)
     }
     
@@ -48,6 +49,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         
         spinner.startAnimating()
         movieArray.removeAll()
+        collectionView.reloadData()
         let newSearchText = searchBar.text?.replacingOccurrences(of: " ", with: "+")
         DispatchQueue.global().async {
             let json = DataHandler.getJSON(path: "http://www.omdbapi.com/?s=\(newSearchText!)")
@@ -75,7 +77,6 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as! MovieCollectionViewCell
-        //get a movie
         let aMovie = movieArray[indexPath.row]
         cell.setTitle(title: aMovie.getTitle())
         cell.setPosterImage(image: aMovie.getPoster())

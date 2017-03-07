@@ -11,7 +11,7 @@ import UIKit
 class Movie {
     
     private var title: String
-    private var poster: String
+    private var poster: UIImage
     private var year: String
     private var score: String?
     private var rating: String?
@@ -21,7 +21,7 @@ class Movie {
     
     init(movieTitle: String, moviePoster: String, movieYear: String){
         title = movieTitle
-        poster = moviePoster
+        poster = DataHandler.getImage(path: moviePoster)
         year = movieYear
     }
     
@@ -38,7 +38,7 @@ class Movie {
     }
     
     func getPoster() -> UIImage {
-        return DataHandler.getImage(path: poster)
+        return poster
     }
     
     func getYear() -> String {
