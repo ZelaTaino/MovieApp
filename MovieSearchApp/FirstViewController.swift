@@ -40,6 +40,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func setUpNewReleaseView(){
+        spinner.startAnimating()
         let date = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -51,11 +52,16 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         newReleases.removeAll()
         typeArray.removeAll()
         arrangedArray.removeAll()
-        let json = DataHandler.getJSON(path: "https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=\(strEarlierDate)&primary_release_date.lte=\(strDate)&api_key=c02ed482e087b66647b2ee64eab75c99")
-        print("\(json)")
-        createNewReleases(json: json)
-        arrangeMovieByType(movieList: newReleases)
-        collectionView.reloadData()
+        
+        DispatchQueue.global().async {
+            let json = DataHandler.getJSON(path: "https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=\(strEarlierDate)&primary_release_date.lte=\(strDate)&api_key=c02ed482e087b66647b2ee64eab75c99")
+            DispatchQueue.main.async {
+                self.createNewReleases(json: json)
+                self.arrangeMovieByType(movieList: self.newReleases)
+                self.collectionView.reloadData()
+                self.spinner.stopAnimating()
+            }
+        }
     }
     
     func arrangeMovieByType(movieList: [Movie]){

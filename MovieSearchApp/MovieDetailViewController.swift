@@ -14,10 +14,6 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate{
     @IBOutlet weak var poster: UIImageView!
     @IBOutlet weak var score: UILabel!
     @IBOutlet weak var year: UILabel!
-//    @IBOutlet weak var duration: UILabel!
-//    @IBOutlet weak var actors: UILabel!
-//    @IBOutlet weak var rating: UILabel!
-//    @IBOutlet weak var movieDescription: UILabel!
     
     var aMovie: Movie!
     var favoritesArray = [String]()
@@ -41,15 +37,10 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate{
     func addToMovie(json: JSON) {
         score.text = "Score: \(json["imdbRating"].stringValue)/10"
         rated.text = "Rated: \(json["Rated"].stringValue)"
-//            rating.text = aJson["Rated"].stringValue
-//            actors.text = aJson["Actors"].stringValue
-//            movieDescription.text = aJson["Plot"].stringValue
-//            duration.text = aJson["Runtime"].stringValue
     }
 
     @IBAction func addToFavoritesPressed(_ sender: UIButton) {
         favoritesArray.append(aMovie.getTitle())
-        print("selected")
         
         let defaults = UserDefaults.standard
         defaults.set(favoritesArray, forKey: "favorites")
