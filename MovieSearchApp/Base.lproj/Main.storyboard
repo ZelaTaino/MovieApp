@@ -194,7 +194,7 @@
                                                 </constraints>
                                                 <state key="normal" title="Read Reviews"/>
                                                 <connections>
-                                                    <segue destination="OZs-9X-zEY" kind="show" id="PHV-ic-Tqc"/>
+                                                    <segue destination="OZs-9X-zEY" kind="show" identifier="segueReviews" id="PHV-ic-Tqc"/>
                                                 </connections>
                                             </button>
                                         </subviews>

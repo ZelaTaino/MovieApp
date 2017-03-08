@@ -10,17 +10,32 @@ import UIKit
 
 class ReviewsTableViewController: UITableViewController {
     
-    var names = ["Bob", "Zela"]
-    var reviewsArray = ["Cool", "Before Nemo, a long ago another child got lost in the open ocean...\r\n\r\nWhoa! 200 million dollar film, 1 billion box office collections worldwide. The 27th film to do that so and the 5th animation film. This sequel was made after 13 years, surely a long gab, but 'Finding Nemo' was one of my favourite animations, tell me who does not love it those who love animation. Nevertheless, I liked the idea of having a sequel, but I scared it would go to flop terribly. Now, after watching this, I totally stunned. This is not a greatest animation ever made, but the way the screenplay handled, along with other stuffs, this makes one of the best among its kind.\r\n\r\nFirstly, when I heard the sequel's title, it made me laugh. Like, whaaaat? Once again the story is going to repeat. I did not think it would bring a big change. Actually, it was a different tale, especially I was not expecting it to be emotional. Tell me how many tearjerker-animation you have seen. Once again the Disney-Pixar jointly did it. I think appreciation must go to the director who also made the original film. Great casting too, I mean the voice- over artists."]
+    var movieTitle = String()
+    var reviews = [Review]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        let searchString = movieTitle.replacingOccurrences(of: " ", with: "+")
+        let tmdbUrl = "https://api.themoviedb.org/3/search/movie?api_key=c02ed482e087b66647b2ee64eab75c99&page=1&query=\(searchString)"
+        var json = DataHandler.getJSON(path: tmdbUrl)
+        let aJson = json["results"].arrayValue
+        let id = aJson[0]["id"]
+        let url = "https://api.themoviedb.org/3/movie/\(id)/reviews?api_key=c02ed482e087b66647b2ee64eab75c99"
+        json = DataHandler.getJSON(path: url)
+        self.createReviews(json: json)
+        
         tableView.estimatedRowHeight = 78
         tableView.rowHeight = UITableViewAutomaticDimension
+    }
+    
+    func createReviews(json: JSON){
+        for aJson in json["results"].arrayValue{
+            let aReview = Review(name: aJson["author"].stringValue, comment: aJson["content"].stringValue)
+            reviews.append(aReview)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,13 +52,13 @@ class ReviewsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return reviewsArray.count
+        return reviews.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reviewCell", for: indexPath) as! ReviewTableViewCell
-        cell.username.text = names[indexPath.row]
-        cell.comment.text = reviewsArray[indexPath.row]
+        cell.username.text = reviews[indexPath.row].username
+        cell.comment.text = reviews[indexPath.row].commentContent
         return cell
     }
 

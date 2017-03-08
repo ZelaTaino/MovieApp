@@ -85,9 +85,9 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        setUpNewReleaseView()
         searchBar.text = ""
         searchBar.endEditing(true)
+        setUpNewReleaseView()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

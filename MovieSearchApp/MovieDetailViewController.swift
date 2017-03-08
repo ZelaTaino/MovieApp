@@ -30,7 +30,6 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate{
         
         let searchTitle = aMovie.getTitle().replacingOccurrences(of: " ", with: "+")
         let json = DataHandler.getJSON(path: "http://www.omdbapi.com/?t=\(searchTitle)&plot=full")
-        print("\(json)")
         addToMovie(json: json)
     }
     
@@ -44,6 +43,14 @@ class MovieDetailViewController: UIViewController, UIScrollViewDelegate{
         
         let defaults = UserDefaults.standard
         defaults.set(favoritesArray, forKey: "favorites")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueReviews"{
+            let nextVC = segue.destination as! ReviewsTableViewController
+            //pass in movie title
+            nextVC.movieTitle = aMovie.getTitle()
+        }
     }
     
     override func didReceiveMemoryWarning() {
