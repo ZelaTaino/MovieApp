@@ -16,6 +16,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
     let itemsPerRow: CGFloat = 3
     var spinner = UIActivityIndicatorView()
     var movieArray = [Movie]()
+    var newReleases = [Movie]()
     var arrangedArray = [[Movie]]()
     var typeArray = [String]()
     var cellSelected = 0
@@ -34,6 +35,27 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         spinner.activityIndicatorViewStyle = .gray
         collectionView.addSubview(spinner)
         
+        setUpNewReleaseView()
+        
+    }
+    
+    func setUpNewReleaseView(){
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let strDate = formatter.string(from: date)
+        
+        let earlierDate = Calendar.current.date(byAdding: .month, value: -1, to: date)
+        let strEarlierDate = formatter.string(from: earlierDate!)
+        
+        newReleases.removeAll()
+        typeArray.removeAll()
+        arrangedArray.removeAll()
+        let json = DataHandler.getJSON(path: "https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=\(strEarlierDate)&primary_release_date.lte=\(strDate)&api_key=c02ed482e087b66647b2ee64eab75c99")
+        print("\(json)")
+        createNewReleases(json: json)
+        arrangeMovieByType(movieList: newReleases)
+        collectionView.reloadData()
     }
     
     func arrangeMovieByType(movieList: [Movie]){
@@ -57,6 +79,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        setUpNewReleaseView()
         searchBar.text = ""
         searchBar.endEditing(true)
     }
@@ -127,7 +150,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         if !typeArray.isEmpty {
             let frame = CGRect(x: sectionInset.left, y: 0, width: header.frame.size.width, height: header.frame.size.height)
             let label = UILabel(frame: frame)
-            label.font = label.font.withSize(14)
+            label.font = label.font.withSize(15)
             label.text = typeArray[indexPath.section].uppercased()
             var view = header.subviews
             if !view.isEmpty {
@@ -149,6 +172,19 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
             typeArray.append(movieType)
         }
         typeArray = Array(Set(typeArray))
+    }
+    
+    private func createNewReleases(json: JSON) {
+        let urlRoot = "http://image.tmdb.org/t/p/w185"
+        for aJson in json["results"].arrayValue{
+            let movieTitle = aJson["title"].stringValue
+            let moviePoster = urlRoot + aJson["poster_path"].stringValue
+            let movieYear = aJson["release_date"].stringValue
+            let movieType = "In Theaters"
+            let aMovie = Movie(movieTitle: movieTitle, moviePoster: moviePoster, movieYear: movieYear, movieType: movieType)
+            newReleases.append(aMovie)
+        }
+        typeArray.append("In Theaters")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
