@@ -12,8 +12,12 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
+    let sectionInset = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
+    let itemsPerRow: CGFloat = 3
     var spinner = UIActivityIndicatorView()
     var movieArray = [Movie]()
+    var arrangedArray = [[Movie]]()
+    var typeArray = [String]()
     var cellSelected = 0
 
     override func viewDidLoad() {
@@ -30,6 +34,18 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         spinner.activityIndicatorViewStyle = .gray
         collectionView.addSubview(spinner)
         
+    }
+    
+    func arrangeMovieByType(movieList: [Movie]){
+        for t in typeArray{
+            var list = [Movie]()
+            for aMovie in movieList{
+                if aMovie.getType() == t{
+                    list.append(aMovie)
+                }
+            }
+            arrangedArray.append(list)
+        }
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -49,6 +65,8 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         
         spinner.startAnimating()
         movieArray.removeAll()
+        arrangedArray.removeAll()
+        typeArray.removeAll()
         collectionView.reloadData()
         let newSearchText = searchBar.text?.replacingOccurrences(of: " ", with: "+")
         DispatchQueue.global().async {
@@ -67,28 +85,26 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
                     searchBar.endEditing(true)
                 }
                 self.spinner.stopAnimating()
+                self.arrangeMovieByType(movieList: self.movieArray)
             }
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movieArray.count
+        return arrangedArray[section].count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as! MovieCollectionViewCell
-        let aMovie = movieArray[indexPath.row]
+        let aMovie = arrangedArray[indexPath.section][indexPath.row]
         cell.setTitle(title: aMovie.getTitle())
         cell.setPosterImage(image: aMovie.getPoster())
         return cell
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return typeArray.count
     }
-    
-    let sectionInset = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
-    let itemsPerRow: CGFloat = 3
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let paddingSpace = sectionInset.left * (itemsPerRow + 1)
@@ -106,14 +122,33 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
         return sectionInset.left
     }
     
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath)
+        if !typeArray.isEmpty {
+            let frame = CGRect(x: sectionInset.left, y: 0, width: header.frame.size.width, height: header.frame.size.height)
+            let label = UILabel(frame: frame)
+            label.font = label.font.withSize(14)
+            label.text = typeArray[indexPath.section].uppercased()
+            var view = header.subviews
+            if !view.isEmpty {
+                view[0].removeFromSuperview()
+            }
+            header.addSubview(label)
+        }
+        return header
+    }
+    
     private func createMovies(json: JSON) {
         for aJson in json["Search"].arrayValue{
             let movieTitle = aJson["Title"].stringValue
             let moviePoster = aJson["Poster"].stringValue
             let movieYear = aJson["Year"].stringValue
-            let aMovie = Movie(movieTitle: movieTitle, moviePoster: moviePoster, movieYear: movieYear)
+            let movieType = aJson["Type"].stringValue
+            let aMovie = Movie(movieTitle: movieTitle, moviePoster: moviePoster, movieYear: movieYear, movieType: movieType)
             movieArray.append(aMovie)
+            typeArray.append(movieType)
         }
+        typeArray = Array(Set(typeArray))
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -121,7 +156,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegate, UICollect
             let nextVC = segue.destination as! MovieDetailViewController
             let indexPath = collectionView.indexPathsForSelectedItems
             let index = indexPath?[0]
-            nextVC.aMovie = movieArray[(index?.row)!]
+            nextVC.aMovie = arrangedArray[(index?.section)!][(index?.row)!]
         }
     }
 
